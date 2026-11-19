@@ -3,8 +3,7 @@ from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup
 from telegram.ext import ApplicationBuilder, MessageHandler, CommandHandler, CallbackQueryHandler, filters, ContextTypes
 from PIL import Image, ImageOps
 
-TOKEN = "9252895759:AAGm5kuefSmyecwUXFV3LH1nf5-O-CjVMPs"
-
+TOKEN = "9252895759:AAFsdO3SIeo84XnCaFvW3tletLJIPC0lFwc"
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     keyboard = [
         [InlineKeyboardButton("🖼 Send Photo for Frame", callback_data="send_photo_info")],
