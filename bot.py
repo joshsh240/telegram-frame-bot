@@ -4,6 +4,8 @@ from telegram.ext import ApplicationBuilder, MessageHandler, CommandHandler, Cal
 from PIL import Image, ImageOps
 
 TOKEN = "9252895759:AAFsdO3SIeo84XnCaFvW3tletLJIPC0lFwc"
+
+
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     keyboard = [
         [InlineKeyboardButton("🖼 Send Photo for Frame", callback_data="send_photo_info")],
@@ -21,6 +23,7 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     elif update.callback_query:
         await update.callback_query.message.edit_text(welcome_text, reply_markup=reply_markup)
 
+
 async def button_callback(update: Update, context: ContextTypes.DEFAULT_TYPE):
     query = update.callback_query
     await query.answer()
@@ -29,6 +32,7 @@ async def button_callback(update: Update, context: ContextTypes.DEFAULT_TYPE):
         await query.message.reply_text("Please upload or send your photo directly in our chat now!")
     elif query.data == "about_bot":
         await query.message.reply_text("This bot automatically adds a custom design frame to your photos instantly!")
+
 
 async def handle_photo(update: Update, context: ContextTypes.DEFAULT_TYPE):
     message = update.message
@@ -73,8 +77,15 @@ async def handle_photo(update: Update, context: ContextTypes.DEFAULT_TYPE):
     except Exception as e:
         await message.reply_text(f"An error occurred during processing: {str(e)}")
 
+
 def main():
-    application = ApplicationBuilder().token(TOKEN).build()
+    application = (
+        ApplicationBuilder()
+        .token(TOKEN)
+        .connect_timeout(30.0)
+        .read_timeout(30.0)
+        .build()
+    )
 
     application.add_handler(CommandHandler("start", start))
     application.add_handler(CallbackQueryHandler(button_callback))
@@ -82,6 +93,7 @@ def main():
 
     print("Bot is up and running successfully...")
     application.run_polling()
+
 
 if __name__ == "__main__":
     main()
