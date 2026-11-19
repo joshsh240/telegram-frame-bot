@@ -4,8 +4,7 @@ from telegram.ext import ApplicationBuilder, MessageHandler, CommandHandler, Cal
 from PIL import Image
 
 # Enter your bot token from @BotFather here
-TOKEN = "9252895759:AAGm5kuefSmyecwUXFV3LH1nf5-O-CjVMPs"
-
+TOKEN = "9252895759:AAGq8NDc_wQVPQe_j1TuwOL0BLtkdG54C7c"
 # 1. /start command handler with interactive buttons
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     keyboard = [
